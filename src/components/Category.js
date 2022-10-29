@@ -2,7 +2,23 @@ import { useState } from "react";
 
 const Category = () => {
     const [isShow, setIsShow] = useState(false);
-   
+    const [categoryFormData, setCategoryFormData] = useState({
+        title: "",
+        description: ""
+    });
+    const [categories, setCategories] = useState([]);
+
+    const changeInputHandler = ({target}) => {
+        setCategoryFormData({...categoryFormData, [target.name] : target.value})
+    };
+
+    const addNewCategoryHandler = (e) => {
+        e.preventDefault();
+        const newCategory = {... categoryFormData, createdAt: new Date().toISOString()};
+        // setCategories([...categories,  newCategory])
+        setCategories(prevState => [...prevState,  newCategory]);
+        setCategoryFormData({title: "", description: ""})
+    }
 
     return (
         <div className="">
@@ -10,23 +26,32 @@ const Category = () => {
                 <h2>Add New Category</h2>
                 <div>
                     <label>Title</label>
-                    <input type="text" name="title" />
+                    <input
+                        type="text"
+                        name="title"
+                        value={categoryFormData.title}
+                        onChange={changeInputHandler}
+                    />
                 </div>
 
                 <div>
                     <label>Description</label>
-                    <textarea name="description" />
+                    <textarea
+                        name="description"
+                        value={categoryFormData.description}
+                        onChange={changeInputHandler}
+                    />
                 </div>
 
                 <div className="flex gap-5 justify-center">
-                    <button onClick={()=> setIsShow(false) }>Cancel</button>
-                    <button>Add Category</button>
+                    <button onClick={() => setIsShow(false)}>Cancel</button>
+                    <button onClick={addNewCategoryHandler}>Add Category</button>
                 </div>
             </div>
 
-            <button 
-            onClick={() => setIsShow(prevState => !prevState)}
-            className={`${isShow ? "hidden" : ""}`}>Add new Category</button>
+            <button
+                onClick={() => setIsShow(prevState => !prevState)}
+                className={`${isShow ? "hidden" : ""}`}>Add new Category</button>
 
 
         </div>
