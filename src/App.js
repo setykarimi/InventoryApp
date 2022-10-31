@@ -12,13 +12,16 @@ function App() {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const [sort, setSort] = useState("latest");
+  const [selectedCategory, setSelectedCategory] = useState("");
 
   useEffect(() => {
     let result = products;
     result = filterSearchTitle(result);
     result = sortDate(result);
-    setFilteredProducts(result)
-  }, [products, sort, searchValue])
+    result = filteSelectedCategory(result);
+    setFilteredProducts(result);
+    
+  }, [products, sort, searchValue, selectedCategory])
 
   const sortHandler = (e) => {
     setSort(e.target.value);
@@ -27,6 +30,10 @@ function App() {
   const searchHandler = (e) => {
     setSearchValue(e.target.value.trim().toLowerCase());
   };
+
+  const selectCategoryHandler = (e) => {
+    setSelectedCategory(e.target.value)
+  }
 
   const filterSearchTitle = (array) => {
     return array.filter((p) => p.title.toLowerCase().includes(searchValue));
@@ -43,6 +50,30 @@ function App() {
     })
   };
 
+  const filteSelectedCategory = (array) => {
+    if(!selectedCategory) return array
+    return array.filter( item => item.categoryId === selectedCategory)
+  }
+
+  useEffect(() => {
+    const savedProducts = JSON.parse(localStorage.getItem('products')) || [];
+    const savedCategories = JSON.parse(localStorage.getItem('categories')) || [];
+    setProducts(savedProducts);
+    setCategories(savedCategories);
+  },[]);
+
+  useEffect(() => {
+    if(products.length){
+      localStorage.setItem('products', JSON.stringify(products))
+    }
+  },[products]);
+
+  useEffect(() => {
+   if(categories.length){
+    localStorage.setItem('categories', JSON.stringify(categories))
+   }
+  },[categories]);
+
   return (
     <div className='App bg-slate-500 min-h-screen'>
       <NavBar />
@@ -54,6 +85,9 @@ function App() {
           sort={sort}
           onSort={sortHandler}
           onSearch={searchHandler}
+          categories={categories}
+          selectedCategory={selectedCategory}
+          onSelectCategory={selectCategoryHandler}
         />
 
         <ProductList
