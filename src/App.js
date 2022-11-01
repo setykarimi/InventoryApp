@@ -20,7 +20,7 @@ function App() {
     result = sortDate(result);
     result = filteSelectedCategory(result);
     setFilteredProducts(result);
-    
+
   }, [products, sort, searchValue, selectedCategory])
 
   const sortHandler = (e) => {
@@ -51,8 +51,8 @@ function App() {
   };
 
   const filteSelectedCategory = (array) => {
-    if(!selectedCategory) return array
-    return array.filter( item => item.categoryId === selectedCategory)
+    if (!selectedCategory) return array
+    return array.filter(item => item.categoryId === selectedCategory)
   }
 
   useEffect(() => {
@@ -60,24 +60,24 @@ function App() {
     const savedCategories = JSON.parse(localStorage.getItem('categories')) || [];
     setProducts(savedProducts);
     setCategories(savedCategories);
-  },[]);
+  }, []);
 
   useEffect(() => {
-    if(products.length){
+    if (products.length) {
       localStorage.setItem('products', JSON.stringify(products))
     }
-  },[products]);
+  }, [products]);
 
   useEffect(() => {
-   if(categories.length){
-    localStorage.setItem('categories', JSON.stringify(categories))
-   }
-  },[categories]);
+    if (categories.length) {
+      localStorage.setItem('categories', JSON.stringify(categories))
+    }
+  }, [categories]);
 
   return (
-    <div className='App bg-slate-500 min-h-screen'>
+    <div className='App bg-indigo-100 min-h-screen font-sans text-gray-700'>
       <NavBar />
-      <div className='container m-w-screen-sx m-auto '>
+      <div className='md:w-max flex flex-col space-y-4 m-w-screen-sx m-auto p-3'>
         <Category setCategories={setCategories} />
         <ProductsForm categories={categories} setProducts={setProducts} />
         <Filter
@@ -89,7 +89,6 @@ function App() {
           selectedCategory={selectedCategory}
           onSelectCategory={selectCategoryHandler}
         />
-
         <ProductList
           products={filteredProducts}
           categories={categories}
