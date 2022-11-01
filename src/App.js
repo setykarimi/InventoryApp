@@ -77,7 +77,8 @@ function App() {
   return (
     <div className='App bg-indigo-100 min-h-screen font-sans text-gray-700'>
       <NavBar />
-      <div className='md:w-max flex flex-col space-y-4 m-w-screen-sx m-auto p-3'>
+      <div className='md:w-max flex flex-col space-y-4 m-w-screen-sx m-auto px-3 pt-6
+      '>
         <Category setCategories={setCategories} />
         <ProductsForm categories={categories} setProducts={setProducts} />
         <Filter
