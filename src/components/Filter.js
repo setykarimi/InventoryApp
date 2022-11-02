@@ -11,7 +11,7 @@ const Filter = ({
 
     return (
         <section className="filter-section mb-6 bg-indigo-700 p-5 rounded-md">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 justify-center items-center">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 justify-center items-center">
                 <div className="flex justify-between items-center space-x-2">
                     <label className="text-md text-gray-100">Search</label>
                     <input
