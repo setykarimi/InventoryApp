@@ -35,7 +35,7 @@ const ProductsForm = ({ categories, setProducts }) => {
                 <div className="mb-6 bg-indigo-600 p-5 rounded-md">
                     <h2 className="font-bold text-lg text-left text-gray-100 mb-3">Add New Product</h2>
 
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 justify-center items-center">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-5 justify-center items-center">
                         <div className="flex justify-between items-center space-x-2">
                             <label className="text-md text-gray-100">Title: </label>
                             <input
@@ -76,7 +76,7 @@ const ProductsForm = ({ categories, setProducts }) => {
                         </div>
 
                         <button
-                            className="bg-indigo-200 py-2 font-bold rounded-md border border-indigo-200 text-indigo-600 lg:col-start-2 lg:col-end-3"
+                            className="bg-indigo-200 py-2 font-bold rounded-md border border-indigo-200 text-indigo-600 sx:col-start-2 sx:col-end-3"
                             onClick={addNewProductHandler}>Add new Product</button>
                     </div>
 
