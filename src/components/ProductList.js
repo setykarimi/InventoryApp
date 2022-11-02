@@ -9,7 +9,7 @@ const ProductList = ({ products, categories, setProducts }) => {
     }
     return (
         <div>
-            <h2 className="font-bold text-xl text-left mb-3">Products List</h2>
+            <h2 className="font-bold text-xl text-left mb-4">Products List</h2>
             {
                 products.map(product => {
                     return (
