@@ -4,23 +4,14 @@ import * as Yup from 'yup';
 
 const CategoryForm = ({ setCategories }) => {
     const [isShow, setIsShow] = useState(false);
-    const [categoryFormData, setCategoryFormData] = useState({
-        title: "",
-        description: ""
-    });
-
-    const changeInputHandler = ({ target }) => {
-        if (target.value !== "") {
-            setCategoryFormData({ ...categoryFormData, [target.name]: target.value })
-        }
-    };
-
-    const addNewCategoryHandler = (e) => {
-        e.preventDefault();
-        const newCategory = { ...categoryFormData, createdAt: new Date().toISOString(), id: new Date().getTime() };
-        // setCategories([...categories,  newCategory])
+    
+    const addNewCategoryHandler = (values) => {
+        const newCategory = { ...values, createdAt: new Date().toISOString(), id: new Date().getTime() };
         setCategories(prevState => [...prevState, newCategory]);
-        setCategoryFormData({ title: "", description: "" })
+        initialValues = {
+            title: "",
+            description: ""
+        }
     }
 
     const initialValues = {
