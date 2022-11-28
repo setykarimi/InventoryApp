@@ -1,37 +1,39 @@
-import { useState } from "react";
+import { useFormik } from "formik";
 
 const ProductsForm = ({ categories, setProducts }) => {
-    const [productsFormData, setProductsFormData] = useState({
-        title: "",
-        quantity: 0,
-        categoryId: ""
-    });
-
-    const changeHandler = ({ target }) => {
-        setProductsFormData({ ...productsFormData, [target.name]: target.value })
-    };
-
-    const addNewProductHandler = (e) => {
-        e.preventDefault();
+   
+    const handleSubmit = (values) => {
+        console.log(values);
 
         const newProduct = {
-            ...productsFormData,
+            ...values,
             createdAt: new Date().toISOString(),
             id: new Date().getTime(),
         };
 
         setProducts(prevState => [...prevState, newProduct]);
-        setProductsFormData({
+        initialValues = {
             title: "",
             quantity: "",
             categoryId: ""
-        })
+        }
     }
 
+    const initialValues = {
+        title: "",
+        quantity: 0,
+        categoryId: ""
+    }
+
+    const formik = useFormik({
+        initialValues: initialValues,
+        onSubmit: handleSubmit,
+        enableReinitialize: true
+    })
 
     return (
         <section className="product-section">
-            <form>
+           <form onSubmit={formik.handleSubmit}>
                 <div className="mb-6 bg-indigo-600 p-5 rounded-md">
                     <h2 className="font-bold text-lg text-left text-gray-100 mb-3">Add New Product</h2>
 
@@ -41,9 +43,8 @@ const ProductsForm = ({ categories, setProducts }) => {
                             <input
                                 type="text"
                                 name="title"
-                                value={productsFormData.title}
-                                onChange={changeHandler}
                                 className="rounded-md py-1 border-0 focus:border-0 focus:outline-0 w-11/12"
+                                {...formik.getFieldProps('title')}
                             />
                         </div>
 
@@ -52,9 +53,8 @@ const ProductsForm = ({ categories, setProducts }) => {
                             <input
                                 type="number"
                                 name="quantity"
-                                value={productsFormData.quantity}
-                                onChange={changeHandler}
                                 className="rounded-md py-1 border-0 focus:border-0 focus:outline-0 w-11/12"
+                                {...formik.getFieldProps('quantity')}
                             />
                         </div>
 
@@ -62,9 +62,8 @@ const ProductsForm = ({ categories, setProducts }) => {
                             <label className="text-md text-gray-100">Category: </label>
                             <select
                                 name="categoryId"
-                                value={productsFormData.categoryId}
-                                onChange={changeHandler}
                                 className="rounded-md py-1 border-0 focus:border-0 focus:outline-0 w-11/12"
+                                {...formik.getFieldProps('categoryId')}
                             >
                                 <option>select a category</option>
                                 {categories && categories.map((category) => {
@@ -77,7 +76,9 @@ const ProductsForm = ({ categories, setProducts }) => {
 
                         <button
                             className="bg-indigo-200 py-2 font-bold rounded-md border border-indigo-200 text-indigo-600 sx:col-start-2 sx:col-end-3"
-                            onClick={addNewProductHandler}>Add new Product</button>
+                            type="submit"
+                            disabled={!formik.isValid}>Add new Product
+                        </button>
                     </div>
 
                 </div>
