@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useFormik } from "formik";
+import * as Yup from 'yup';
 
 const CategoryForm = ({ setCategories }) => {
     const [isShow, setIsShow] = useState(false);
@@ -8,7 +10,9 @@ const CategoryForm = ({ setCategories }) => {
     });
 
     const changeInputHandler = ({ target }) => {
+        if(target.value !== ""){
         setCategoryFormData({ ...categoryFormData, [target.name]: target.value })
+        }
     };
 
     const addNewCategoryHandler = (e) => {
@@ -18,6 +22,24 @@ const CategoryForm = ({ setCategories }) => {
         setCategories(prevState => [...prevState, newCategory]);
         setCategoryFormData({ title: "", description: "" })
     }
+    
+    const initialValues = {
+        title: "",
+        description: ""
+    }
+
+    const validationSchema = Yup.object({
+        title: Yup.string().required("Title is required"),
+        description: Yup.number().required("Description is required")
+    })
+
+    const formik = useFormik({
+        initialValues: initialValues,
+        onSubmit: addNewCategoryHandler,
+        validationSchema: validationSchema,
+        enableReinitialize: true,
+        validateOnMount: true
+    })
 
     return (
         <section className="category-section">
