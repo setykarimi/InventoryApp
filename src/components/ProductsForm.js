@@ -47,7 +47,7 @@ const ProductsForm = ({ categories, setProducts }) => {
                 <div className="mb-6 bg-indigo-600 p-5 rounded-md">
                     <h2 className="font-bold text-lg text-left text-gray-100 mb-3">Add New Product</h2>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-5 justify-center items-center">
+                    <div className="grid grid-cols-1 md:grid-cols-3 md:gap-5 gap-6 justify-center items-center">
                         <div className="flex flex-col relative">
                             <div className="flex justify-between items-center space-x-2">
                                 <label className="text-md text-gray-100">Title: </label>
