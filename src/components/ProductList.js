@@ -5,7 +5,7 @@ const ProductList = ({ products, categories, setProducts }) => {
 
     const deleteproductHandler = (productId) => {
         const filteredProduct = products.filter(p => p.id !== parseInt(productId));
-        localStorage.removeItem('products', productId);
+        sessionStorage.removeItem('products', productId);
         setProducts(filteredProduct);
     }
     return (
