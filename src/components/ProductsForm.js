@@ -83,7 +83,7 @@ const ProductsForm = ({ categories, setProducts }) => {
                                     className="rounded-md py-1 border-0 focus:border-0 focus:outline-0 w-11/12"
                                     {...formik.getFieldProps('categoryId')}
                                 >
-                                    <option selected>select a category</option>
+                                    <option>select a category</option>
                                     {categories && categories.map((category) => {
                                         return (
                                             <option name="categoryId" key={category.id} value={category.id}>{category.title}</option>
