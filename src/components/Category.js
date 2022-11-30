@@ -8,13 +8,12 @@ const CategoryForm = ({ setCategories }) => {
     const addNewCategoryHandler = (values) => {
         const newCategory = { ...values, createdAt: new Date().toISOString(), id: new Date().getTime() };
         setCategories(prevState => [...prevState, newCategory]);
-        initialValues = {
-            title: "",
-            description: ""
-        }
+     
+        values.title = "";
+        values.description = "";
     }
 
-    const initialValues = {
+    let initialValues = {
         title: "",
         description: ""
     }
@@ -68,7 +67,7 @@ const CategoryForm = ({ setCategories }) => {
 
                         <button
                             className="border border-indigo-200 py-2 font-bold rounded-md text-indigo-200 hover:bg-indigo-200 hover:text-indigo-600 transition ease-in md:col-start-1 md:col-end-2"
-                            onClick={() => setIsShow(false)}>
+                            onClick={() => setIsShow(false)} type="button">
                             Cancel
                         </button>
                         <button
