@@ -8,6 +8,12 @@ const ProductList = ({ products, categories, setProducts }) => {
         sessionStorage.removeItem('products', productId);
         setProducts(filteredProduct);
     }
+
+    if (products.length == 0){
+        return <div>
+        <h2 className="font-bold text-xl text-center mb-4 text-red-500">Add your products!</h2>
+        </div>
+    }
     return (
         <div>
             <h2 className="font-bold text-xl text-left mb-4">Products List</h2>
