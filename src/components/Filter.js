@@ -25,7 +25,7 @@ const Filter = ({
                 <div className="flex justify-between items-center space-x-2">
                     <label className="text-md text-gray-100">Sort: </label>
                     <select
-                        value={sort}
+                        defaultValue={sort}
                         onChange={onSort}
                         className="rounded-md py-1 border-0 focus:border-0 focus:outline-0 w-11/12"
                     >
@@ -37,11 +37,11 @@ const Filter = ({
                 <div className="flex justify-between items-center space-x-2">
                     <label className="text-md text-gray-100">Categori: </label>
                     <select
-                        value={selectedCategory}
+                        defaultValue={selectedCategory}
                         onChange={onSelectCategory}
                         className="rounded-md py-1 border-0 focus:border-0 focus:outline-0 w-11/12"
                     >
-                        <option selected value="">All</option>
+                        <option defaultValue="">All</option>
 
                         {categories.map((category) => {
                             return (<option key={category.id} value={category.id}>{category.title}</option>)
