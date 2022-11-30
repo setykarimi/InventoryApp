@@ -13,11 +13,10 @@ const ProductsForm = ({ categories, setProducts }) => {
         };
 
         setProducts(prevState => [...prevState, newProduct]);
-        initialValues = {
-            title: "",
-            quantity: "",
-            categoryId: ""
-        }
+
+        values.title = "";
+        values.quantity = "";
+        values.categoryId = "";
     }
 
     const initialValues = {
