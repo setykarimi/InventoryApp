@@ -4,7 +4,6 @@ import * as Yup from 'yup';
 const ProductsForm = ({ categories, setProducts }) => {
 
     const handleSubmit = (values) => {
-        console.log(values);
 
         const newProduct = {
             ...values,
