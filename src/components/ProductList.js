@@ -17,7 +17,7 @@ const ProductList = ({ products, categories, setProducts }) => {
                         <div key={product.id} className= "flex justify-between text-left space-y-3 items-center">
                             <span className="font-bold text-lg mt-2">{product.title}</span>
                             <div className="flex space-x-3 items-center mt-0">
-                                <span>{new Date(product.createdAt).toLocaleDateString("fa-IR")}</span>
+                                <span>{new Date(product.createdAt).toLocaleDateString("En")}</span>
                                 <span>{findCategory(product.categoryId)}</span>
                                 <span className="flex justify-center items-center font-bold text-indigo-500 rounded-full bg-indigo-200 w-6 h-6">{product.quantity}</span>
                                 <button 
