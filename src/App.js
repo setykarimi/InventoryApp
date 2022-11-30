@@ -55,21 +55,21 @@ function App() {
   }
 
   useEffect(() => {
-    const savedProducts = JSON.parse(localStorage.getItem('products')) || [];
-    const savedCategories = JSON.parse(localStorage.getItem('categories')) || [];
+    const savedProducts = JSON.parse(sessionStorage.getItem('products')) || [];
+    const savedCategories = JSON.parse(sessionStorage.getItem('categories')) || [];
     setProducts(savedProducts);
     setCategories(savedCategories);
   }, []);
 
   useEffect(() => {
     if (products.length) {
-      localStorage.setItem('products', JSON.stringify(products))
+      sessionStorage.setItem('products', JSON.stringify(products))
     }
   }, [products]);
 
   useEffect(() => {
     if (categories.length) {
-      localStorage.setItem('categories', JSON.stringify(categories))
+      sessionStorage.setItem('categories', JSON.stringify(categories))
     }
   }, [categories]);
 
